@@ -1,94 +1,96 @@
-import React, { useState, useEffect } from 'react';
-import { CaretLeft, CaretRight } from '@phosphor-icons/react';
-import './IngredientsSlider.css';
+import React, { useState, useEffect } from "react";
+import { CaretLeft, CaretRight } from "@phosphor-icons/react";
+import "./IngredientsSlider.css";
 
 const IngredientsSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [itemsPerView, setItemsPerView] = useState(4.5);
+  const [itemsPerView, setItemsPerView] = useState(3.5);
 
   const ingredients = [
     {
-      id: 1,
-      name: 'Saffron',
-      alt: 'Saffron - Natural skin brightening ingredient for face cream',
-      title: 'Saffron (Crocus sativus) - Improves complexion and adds natural glow',
-      color: '#FF6B35',
-      seoKeywords: 'saffron for skin, natural brightening, kesar face cream'
+      name: "Aloe Vera",
+      photo: "/images/ingredients/kosha_aloe_vera.png",
+      alt: "Aloe Vera - Natural hydration and soothing ingredient",
+      seoKeywords: "aloe vera, natural moisturizer, skin soothing",
     },
     {
-      id: 2,
-      name: 'Aloe Vera',
-      alt: 'Aloe Vera - Deep hydration and soothing natural ingredient',
-      title: 'Aloe Vera (Aloe barbadensis) - Soothes inflammation and hydrates skin',
-      color: '#52B788',
-      seoKeywords: 'aloe vera benefits, skin hydration, natural moisturizer'
+      name: "Alpha Arbutin",
+      photo: "/images/ingredients/kosha_alpha_arbutin.png",
+      alt: "Alpha Arbutin - Skin brightening and spot reduction",
+      seoKeywords: "alpha arbutin, skin brightening, hyperpigmentation",
     },
     {
-      id: 3,
-      name: 'Vitamin E',
-      alt: 'Vitamin E - Powerful antioxidant for anti-aging skincare',
-      title: 'Vitamin E (Tocopherol) - Anti-aging and protects from free radicals',
-      color: '#FFD166',
-      seoKeywords: 'vitamin e for skin, anti-aging cream, antioxidant skincare'
+      name: "Argan Oil",
+      photo: "/images/ingredients/kosha_argan_oil.png",
+      alt: "Argan Oil - Deep nourishment and skin softening",
+      seoKeywords: "argan oil, skin nourishment, natural oils",
     },
     {
-      id: 4,
-      name: 'Turmeric',
-      alt: 'Turmeric - Natural antiseptic and skin brightening herb',
-      title: 'Turmeric (Curcuma longa) - Brightens skin tone naturally',
-      color: '#FFA62B',
-      seoKeywords: 'turmeric for skin, haldi benefits, natural antiseptic'
+      name: "Coffee",
+      photo: "/images/ingredients/kosha_coffee.png",
+      alt: "Coffee - Exfoliating and skin energizing ingredient",
+      seoKeywords: "coffee scrub, skin energizer, natural exfoliant",
     },
     {
-      id: 5,
-      name: 'Sandalwood',
-      alt: 'Sandalwood - Cooling and skin tone evening natural ingredient',
-      title: 'Sandalwood (Santalum album) - Even skin tone with cooling effect',
-      color: '#D4A574',
-      seoKeywords: 'sandalwood benefits, chandan for skin, natural cooling'
+      name: "Green Tea",
+      photo: "/images/ingredients/kosha_green_tea.png",
+      alt: "Green Tea - Antioxidant and skin protecting",
+      seoKeywords: "green tea, antioxidant skincare, detox skin",
     },
     {
-      id: 6,
-      name: 'Rose Water',
-      alt: 'Rose Water - Natural toner and pH balancing ingredient',
-      title: 'Rose Water (Rosa damascena) - Balances pH and tones skin',
-      color: '#FF6B9D',
-      seoKeywords: 'rose water benefits, natural toner, gulab jal for skin'
+      name: "Hyaluronic Acid",
+      photo: "/images/ingredients/kosha_hyalaronic_acid.png",
+      alt: "Hyaluronic Acid - Intense hydration and plumping",
+      seoKeywords: "hyaluronic acid, skin plumping, deep hydration",
     },
     {
-      id: 7,
-      name: 'Almond Oil',
-      alt: 'Almond Oil - Deep nourishment and skin softening oil',
-      title: 'Almond Oil (Prunus dulcis) - Nourishes and softens skin deeply',
-      color: '#E8D5B7',
-      seoKeywords: 'almond oil for skin, badam oil benefits, natural nourishment'
+      name: "Keratin",
+      photo: "/images/ingredients/kosha_ketatin.png",
+      alt: "Keratin - Skin repairing and strengthening",
+      seoKeywords: "keratin, skin repair, strengthening ingredients",
     },
     {
-      id: 8,
-      name: 'Neem Extract',
-      alt: 'Neem Extract - Antibacterial properties for acne prevention',
-      title: 'Neem Extract (Azadirachta indica) - Prevents acne naturally',
-      color: '#6B9080',
-      seoKeywords: 'neem for acne, antibacterial skin care, natural acne treatment'
-    }
+      name: "Niacinamide (B3)",
+      photo: "/images/ingredients/kosha_niacinamide_vitamin_b3.png",
+      alt: "Niacinamide Vitamin B3 - Pore refining and skin evening",
+      seoKeywords: "niacinamide, vitamin b3, pore refining",
+    },
+    {
+      name: "Salicylic Acid",
+      photo: "/images/ingredients/kosha_salicilyic_acid.png",
+      alt: "Salicylic Acid - Acne fighting and clear skin",
+      seoKeywords: "salicylic acid, acne treatment, clear skin",
+    },
+    {
+      name: "Tea Tree Oil",
+      photo: "/images/ingredients/kosha_tea_tree_oil.png",
+      alt: "Tea Tree Oil - Anti-bacterial and anti-inflammatory",
+      seoKeywords: "tea tree oil, antibacterial skin care, natural healing",
+    },
+    {
+      name: "Vitamin C",
+      photo: "/images/ingredients/kosha_vitamin_c.png",
+      alt: "Vitamin C - Radiance boosting and skin brightening",
+      seoKeywords: "vitamin c, skin radiance, brightening serum",
+    },
   ];
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth <= 480) {
-        setItemsPerView(1.2);
+        setItemsPerView(1.1);
       } else if (window.innerWidth <= 768) {
-        setItemsPerView(2.2);
+        setItemsPerView(1.5);
       } else if (window.innerWidth <= 992) {
-        setItemsPerView(3.2);
+        setItemsPerView(2.5);
       } else {
-        setItemsPerView(4.5);
+        setItemsPerView(3.5);
       }
     };
 
     handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   const maxIndex = Math.ceil(ingredients.length - itemsPerView);
@@ -106,7 +108,9 @@ const IngredientsSlider = () => {
       <div className="container">
         <div className="section-header">
           <h2>Natural Ingredients</h2>
-          <p className="section-subtitle">Pure herbal extracts that make our products exceptional</p>
+          <p className="section-subtitle">
+            Pure herbal extracts that make our products exceptional
+          </p>
         </div>
 
         <div className="ingredients-slider-wrapper">
@@ -123,26 +127,23 @@ const IngredientsSlider = () => {
             <div
               className="ingredients-track"
               style={{
-                transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`
+                transform: `translateX(-${currentIndex * (100 / itemsPerView)}%)`,
               }}
             >
-              {ingredients.map((ingredient) => (
-                <div 
-                  key={ingredient.id} 
+              {ingredients.map((ingredient, index) => (
+                <div
+                  key={index}
                   className="ingredient-card"
                   data-ingredient={ingredient.name}
                   data-keywords={ingredient.seoKeywords}
                 >
-                  <div
-                    className="ingredient-image-only"
-                    style={{ backgroundColor: ingredient.color }}
-                    role="img"
-                    aria-label={ingredient.alt}
-                  >
-                    <div className="ingredient-overlay">
-                      <span className="ingredient-icon">🌿</span>
-                      <span className="ingredient-name-overlay">{ingredient.name}</span>
-                    </div>
+                  <div className="ingredient-image-container">
+                    <img
+                      src={ingredient.photo}
+                      alt={ingredient.alt}
+                      className="ingredient-photo"
+                      loading="lazy"
+                    />
                   </div>
                 </div>
               ))}

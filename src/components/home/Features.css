@@ -2,30 +2,38 @@
 
 .features-section {
   background: linear-gradient(135deg, #f8faf9 0%, #ffffff 100%);
-  padding: 50px 0;
+  padding: 30px 0;
   position: relative;
   overflow: hidden;
 }
 
 .features-section::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   right: -10%;
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(45, 80, 22, 0.03) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(45, 80, 22, 0.03) 0%,
+    transparent 70%
+  );
   border-radius: 50%;
 }
 
 .features-section::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -30%;
   left: -5%;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(212, 165, 116, 0.03) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(212, 165, 116, 0.03) 0%,
+    transparent 70%
+  );
   border-radius: 50%;
 }
 
@@ -49,13 +57,17 @@
 }
 
 .feature-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, rgba(45, 80, 22, 0.03) 0%, rgba(212, 165, 116, 0.03) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(45, 80, 22, 0.03) 0%,
+    rgba(212, 165, 116, 0.03) 100%
+  );
   opacity: 0;
   transition: opacity 0.4s ease;
 }
@@ -71,10 +83,14 @@
 }
 
 .feature-icon-wrapper {
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
   margin: 0 auto 24px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-light) 100%
+  );
   border-radius: 20px;
   display: flex;
   align-items: center;
@@ -85,7 +101,7 @@
 }
 
 .feature-icon-wrapper::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: -2px;
   background: linear-gradient(135deg, var(--primary), var(--primary-light));
@@ -121,7 +137,7 @@
   font-weight: 700;
   color: var(--text-primary);
   margin-bottom: 12px;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   transition: color 0.3s ease;
 }
 
@@ -173,5 +189,3 @@
     font-size: 0.875rem;
   }
 }
-
-
