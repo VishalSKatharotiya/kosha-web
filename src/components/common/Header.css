@@ -1,0 +1,395 @@
+/* Header Styles */
+
+/* Offer Banner with Button-like Animation */
+.offer-banner {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: var(--white);
+  padding: 12px 0;
+  text-align: center;
+  font-size: 0.875rem;
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  animation: bannerBounce 2s ease-in-out infinite;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hover effect like buttons */
+.offer-banner:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(255, 215, 0, 0.4);
+}
+
+/* Animated gradient background */
+.offer-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 215, 0, 0.4),
+    transparent
+  );
+  animation: slideShine 2.5s infinite;
+}
+
+/* Animated border effect */
+.offer-banner::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--accent),
+    rgba(255, 215, 0, 0.5),
+    var(--accent)
+  );
+  animation: borderPulse 1.5s ease-in-out infinite;
+}
+
+/* Keyframe animations */
+@keyframes slideShine {
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+@keyframes bannerBounce {
+  0%, 100% {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+  }
+  50% {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.6);
+  }
+}
+
+@keyframes borderPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scaleX(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1.05);
+  }
+}
+
+.offer-banner p {
+  margin: 0;
+  color: var(--white);
+  position: relative;
+  z-index: 1;
+  animation: textBounceGlow 2s ease-in-out infinite;
+  text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* Enhanced text animation with bounce effect */
+@keyframes textBounceGlow {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px rgba(255, 215, 0, 0.4),
+      0 0 20px rgba(255, 215, 0, 0.2);
+    transform: scale(1);
+  }
+  25% {
+    transform: scale(1.02);
+  }
+  50% {
+    text-shadow: 
+      0 0 20px rgba(255, 215, 0, 0.9), 
+      0 0 40px rgba(255, 215, 0, 0.5),
+      0 0 60px rgba(255, 215, 0, 0.3);
+    transform: scale(1.03);
+  }
+  75% {
+    transform: scale(1.02);
+  }
+}
+
+/* Active state like buttons */
+.offer-banner:active {
+  transform: scale(0.98);
+}
+
+/* Main Header */
+.header {
+  background-color: var(--white);
+  box-shadow: var(--shadow-sm);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: box-shadow var(--transition-normal);
+}
+
+.header:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  gap: var(--spacing-md);
+}
+
+/* Logo */
+.logo {
+  text-decoration: none;
+  transition: transform var(--transition-fast);
+}
+
+.logo:hover {
+  transform: scale(1.02);
+}
+
+.logo h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.logo .tagline {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin: 0;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Desktop Navigation */
+.desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+.nav-link {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 8px 0;
+  position: relative;
+  transition: color var(--transition-fast);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width var(--transition-normal);
+}
+
+.nav-link:hover {
+  color: var(--primary);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Button styled as nav link */
+.nav-link-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.nav-link-button:hover {
+  color: var(--primary);
+}
+
+.nav-link-button::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width var(--transition-normal);
+}
+
+.nav-link-button:hover::after {
+  width: 100%;
+}
+
+/* Header Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.whatsapp-icon {
+  color: var(--whatsapp);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.whatsapp-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.whatsapp-icon:hover {
+  transform: scale(1.15);
+  filter: brightness(1.1);
+}
+
+/* Mobile Menu Toggle */
+.mobile-menu-toggle {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 8px;
+  transition: transform var(--transition-fast);
+}
+
+.mobile-menu-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-md) 0;
+  background-color: var(--white);
+  border-top: 1px solid var(--gray-100);
+}
+
+.mobile-nav-link {
+  padding: 12px 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--gray-100);
+  transition: all var(--transition-fast);
+}
+
+.mobile-nav-link:hover {
+  color: var(--primary);
+  background-color: var(--gray-50);
+  padding-left: 16px;
+}
+
+.mobile-nav-link:last-child {
+  border-bottom: none;
+}
+
+/* Mobile button styled as nav link */
+.mobile-nav-link-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  width: 100%;
+  text-align: left;
+}
+
+.mobile-nav-link-button:hover {
+  color: var(--primary);
+  background-color: var(--gray-50);
+  padding-left: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .logo h1 {
+    font-size: 1.5rem;
+  }
+
+  .logo .tagline {
+    font-size: 0.7rem;
+  }
+
+  .nav-link {
+    font-size: 0.875rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+  
+  .mobile-menu-toggle {
+    display: block;
+  }
+
+  .header-content {
+    padding: 12px 0;
+  }
+
+  .logo h1 {
+    font-size: 1.35rem;
+  }
+
+  .whatsapp-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+
+  .offer-banner {
+    padding: 10px 0;
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .logo h1 {
+    font-size: 1.25rem;
+  }
+  
+  .logo .tagline {
+    font-size: 0.625rem;
+  }
+
+  .whatsapp-icon svg {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .offer-banner p {
+    font-size: 0.7rem;
+    padding: 0 8px;
+  }
+}
+

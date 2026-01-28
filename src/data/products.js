@@ -1,0 +1,305 @@
+// Product data for Kosha Herbal
+
+export const products = [
+  {
+    id: 'aura-combo',
+    name: 'Aura Combo - Day & Night Cream',
+    subtitle: 'Advanced Skin Radiance System',
+    category: 'Combo',
+    rating: 4.8,
+    reviewCount: 156,
+    mrp: 999,
+    price: 899,
+    discount: 10,
+    images: [
+      '/images/products/aura-combo-front.jpg',
+      '/images/products/aura-combo-back.jpg',
+      '/images/products/aura-combo-unboxed.jpg',
+      '/images/products/day-cream-texture.jpg',
+      '/images/products/night-cream-texture.jpg',
+      '/images/products/ingredients.jpg',
+      '/images/products/lifestyle.jpg'
+    ],
+    badges: ['BESTSELLER', 'DERMATOLOGICALLY TESTED', '100% NATURAL'],
+    freeGift: {
+      name: 'Herbal Face Wash',
+      value: 99,
+      quantity: '60ml'
+    },
+    package: [
+      { item: 'Day Cream', quantity: '15g' },
+      { item: 'Night Cream', quantity: '15g' },
+      { item: 'FREE: Herbal Face Wash', quantity: '60ml' }
+    ],
+    keyBenefits: [
+      'Clinically proven results in 14 days',
+      'Reduces hyperpigmentation',
+      '24-hour deep hydration',
+      'UV & pollution protection',
+      'Reduces fine lines & wrinkles',
+      'Natural glow & radiance',
+      'Suitable for all skin types',
+      'Unisex formulation'
+    ],
+    description: `Aura Combo is a scientifically formulated skincare system combining the power of Ayurvedic ingredients with modern dermatological research. This premium day and night cream set is designed to address multiple skin concerns while providing comprehensive protection and nourishment.
+
+Our advanced formulation is developed in collaboration with dermatologists and uses only the finest natural ingredients. Each component is carefully selected for its proven efficacy in promoting healthy, radiant skin.`,
+    dayCream: {
+      features: [
+        'SPF equivalent natural sun protection',
+        'Lightweight, fast-absorbing formula',
+        'Non-greasy, perfect makeup base',
+        'Controls excess sebum',
+        'Protects from environmental damage',
+        'Suitable for professional settings'
+      ]
+    },
+    nightCream: {
+      features: [
+        'Intensive repair technology',
+        'Supports natural skin regeneration',
+        'Rich, nourishing texture',
+        'Targets signs of aging',
+        'Deep cellular repair',
+        'Wake up to refreshed skin'
+      ]
+    },
+    dayIngredients: [
+      {
+        name: 'Aqua',
+        scientificName: 'Purified Water',
+        benefits: ['Hydration base', 'Helps absorption', 'Essential carrier', 'Moisturizing foundation']
+      },
+      {
+        name: 'Niacinamide',
+        scientificName: 'Vitamin B3',
+        benefits: ['Brightens skin tone', 'Minimizes pores', 'Reduces hyperpigmentation', 'Strengthens skin barrier', 'Controls oil production']
+      },
+      {
+        name: 'Arbutin',
+        scientificName: 'Alpha-Arbutin',
+        benefits: ['Powerful skin lightening', 'Fades dark spots', 'Reduces melanin production', 'Even skin tone', 'Safe brightening agent']
+      },
+      {
+        name: 'Glycerin',
+        scientificName: 'Glycerol',
+        benefits: ['Intense hydration', 'Moisture retention', 'Soft and supple skin', 'Protects skin barrier', 'Non-greasy humectant']
+      },
+      {
+        name: 'Aloe Vera Extract',
+        scientificName: 'Aloe barbadensis',
+        benefits: ['Soothes irritation', 'Anti-inflammatory', 'Deep hydration', 'Promotes healing', 'Lightweight moisture']
+      },
+      {
+        name: 'Emollients',
+        scientificName: 'Plant-based emulsifiers',
+        benefits: ['Smooth texture', 'Locks in moisture', 'Softens skin', 'Non-comedogenic', 'Enhanced absorption']
+      },
+      {
+        name: 'Preservatives',
+        scientificName: 'Natural preservative system',
+        benefits: ['Product stability', 'Prevents microbial growth', 'Extended shelf life', 'Safe formulation', 'Maintains efficacy']
+      },
+      {
+        name: 'Fragrance',
+        scientificName: 'Natural aromatic compounds',
+        benefits: ['Pleasant sensory experience', 'Aromatherapy benefits', 'Hypoallergenic formula', 'Light and fresh scent']
+      }
+    ],
+    nightIngredients: [
+      {
+        name: 'Aqua',
+        scientificName: 'Purified Water',
+        benefits: ['Hydration base', 'Helps absorption', 'Essential carrier', 'Moisturizing foundation']
+      },
+      {
+        name: 'Avocado Butter',
+        scientificName: 'Persea gratissima butter',
+        benefits: ['Deep nourishment', 'Rich in vitamins A, D & E', 'Repairs damaged skin', 'Intense moisturization', 'Anti-aging properties']
+      },
+      {
+        name: 'Avocado Oil',
+        scientificName: 'Persea gratissima oil',
+        benefits: ['Penetrates deeply', 'Boosts collagen', 'Rich in fatty acids', 'Reduces inflammation', 'Regenerates skin cells']
+      },
+      {
+        name: 'Almond Oil',
+        scientificName: 'Prunus dulcis oil',
+        benefits: ['Nourishes skin', 'Reduces dark circles', 'Softens and smoothens', 'Rich in Vitamin E', 'Anti-aging effects']
+      },
+      {
+        name: 'Jojoba Oil',
+        scientificName: 'Simmondsia chinensis oil',
+        benefits: ['Balances oil production', 'Non-comedogenic', 'Mimics natural sebum', 'Long-lasting hydration', 'Antibacterial properties']
+      },
+      {
+        name: 'Niacinamide',
+        scientificName: 'Vitamin B3',
+        benefits: ['Brightens skin tone', 'Minimizes pores', 'Reduces hyperpigmentation', 'Strengthens skin barrier', 'Anti-aging benefits']
+      },
+      {
+        name: 'Aloe Vera Extract',
+        scientificName: 'Aloe barbadensis',
+        benefits: ['Soothes irritation', 'Anti-inflammatory', 'Deep hydration', 'Promotes healing', 'Overnight repair']
+      },
+      {
+        name: 'Emollients',
+        scientificName: 'Plant-based emulsifiers',
+        benefits: ['Rich creamy texture', 'Locks in overnight moisture', 'Softens skin', 'Enhanced penetration', 'Luxurious feel']
+      },
+      {
+        name: 'Preservatives',
+        scientificName: 'Natural preservative system',
+        benefits: ['Product stability', 'Prevents microbial growth', 'Extended shelf life', 'Safe formulation', 'Maintains efficacy']
+      },
+      {
+        name: 'Fragrance',
+        scientificName: 'Natural aromatic compounds',
+        benefits: ['Relaxing night-time aroma', 'Aromatherapy benefits', 'Calming scent', 'Enhances sleep quality']
+      }
+    ],
+    howToUse: {
+      day: [
+        'Wash face with the complimentary herbal face wash',
+        'Pat dry gently with soft towel',
+        'Take pea-sized amount (approx. 0.5g)',
+        'Apply evenly across face and neck',
+        'Massage gently in upward circular motions for 2-3 minutes',
+        'Allow 3-5 minutes for absorption',
+        'Use every morning after cleansing'
+      ],
+      night: [
+        'Remove all makeup and impurities',
+        'Cleanse face thoroughly with face wash',
+        'Pat dry completely',
+        'Take slightly more than daytime amount (approx. 1g)',
+        'Apply to face and neck area',
+        'Massage gently in upward strokes for 3-5 minutes',
+        'Leave overnight for deep nourishment',
+        'Use before bedtime on clean skin'
+      ]
+    },
+    suitableFor: ['All skin types', 'Both men and women', 'Ages 18-60', 'Indian skin tones'],
+    productCategory: 'skin-care',
+    tags: ['day cream', 'night cream', 'facial cream', 'face cream', 'anti-aging cream', 'brightening cream', 'hydration', 'natural skincare', 'herbal cream', 'ayurvedic cream', 'best facial combo', 'skin lightening cream', 'fairness cream', 'radiance cream', 'moisturizer', 'day and night cream', 'combo pack', 'skincare routine', 'organic face cream', 'chemical free cream'],
+    seoKeywords: 'day cream, night cream, facial cream, best face cream India, natural day cream, ayurvedic night cream, anti-aging cream, skin brightening cream, face moisturizer, herbal face cream, best facial combo, day night cream combo, organic skincare, natural moisturizer, chemical-free face cream, dermatologist recommended cream'
+  },
+  {
+    id: 'aura-night-repair',
+    name: 'Aura Night Repair Cream',
+    subtitle: 'Intensive Night Renewal Formula',
+    category: 'Cream',
+    rating: 4.9,
+    reviewCount: 124,
+    mrp: 599,
+    price: 499,
+    discount: 17,
+    images: [
+      '/images/products/night-cream-front.jpg',
+      '/images/products/night-cream-back.jpg',
+      '/images/products/night-cream-texture.jpg',
+      '/images/products/night-cream-lifestyle.jpg'
+    ],
+    badges: ['NEW LAUNCH', 'DERMATOLOGICALLY TESTED', '100% NATURAL'],
+    freeGift: null,
+    package: [
+      { item: 'Night Repair Cream', quantity: '15g' }
+    ],
+    keyBenefits: [
+      'Deep overnight skin repair',
+      'Reduces fine lines & wrinkles',
+      'Intense hydration therapy',
+      'Brightens dark spots',
+      'Supports skin regeneration',
+      'Suitable for all skin types',
+      'Unisex formulation',
+      'Visible results in 7 days'
+    ],
+    description: `Aura Night Repair Cream is a powerful overnight treatment that works while you sleep to repair, rejuvenate, and restore your skin. Formulated with premium natural ingredients and advanced repair technology, this cream targets signs of aging and damage accumulated throughout the day.`,
+    dayCream: null,
+    nightCream: {
+      features: [
+        'Advanced repair technology',
+        'Deep cellular regeneration',
+        'Rich, luxurious texture',
+        'Targets aging signs',
+        'Deep moisture therapy',
+        'Wake up to glowing skin'
+      ]
+    },
+    nightIngredients: [
+      {
+        name: 'Aqua',
+        scientificName: 'Purified Water',
+        benefits: ['Hydration base', 'Helps absorption', 'Essential carrier', 'Moisturizing foundation']
+      },
+      {
+        name: 'Avocado Butter',
+        scientificName: 'Persea gratissima butter',
+        benefits: ['Deep nourishment', 'Rich in vitamins A, D & E', 'Repairs damaged skin', 'Intense moisturization', 'Anti-aging properties']
+      },
+      {
+        name: 'Avocado Oil',
+        scientificName: 'Persea gratissima oil',
+        benefits: ['Penetrates deeply', 'Boosts collagen', 'Rich in fatty acids', 'Reduces inflammation', 'Regenerates skin cells']
+      },
+      {
+        name: 'Almond Oil',
+        scientificName: 'Prunus dulcis oil',
+        benefits: ['Nourishes skin', 'Reduces dark circles', 'Softens and smoothens', 'Rich in Vitamin E', 'Anti-aging effects']
+      },
+      {
+        name: 'Jojoba Oil',
+        scientificName: 'Simmondsia chinensis oil',
+        benefits: ['Balances oil production', 'Non-comedogenic', 'Mimics natural sebum', 'Long-lasting hydration', 'Antibacterial properties']
+      },
+      {
+        name: 'Niacinamide',
+        scientificName: 'Vitamin B3',
+        benefits: ['Brightens skin tone', 'Minimizes pores', 'Reduces hyperpigmentation', 'Strengthens skin barrier', 'Anti-aging benefits']
+      },
+      {
+        name: 'Aloe Vera Extract',
+        scientificName: 'Aloe barbadensis',
+        benefits: ['Soothes irritation', 'Anti-inflammatory', 'Deep hydration', 'Promotes healing', 'Overnight repair']
+      },
+      {
+        name: 'Emollients',
+        scientificName: 'Plant-based emulsifiers',
+        benefits: ['Rich creamy texture', 'Locks in overnight moisture', 'Softens skin', 'Enhanced penetration', 'Luxurious feel']
+      },
+      {
+        name: 'Preservatives',
+        scientificName: 'Natural preservative system',
+        benefits: ['Product stability', 'Prevents microbial growth', 'Extended shelf life', 'Safe formulation', 'Maintains efficacy']
+      },
+      {
+        name: 'Fragrance',
+        scientificName: 'Natural aromatic compounds',
+        benefits: ['Relaxing night-time aroma', 'Aromatherapy benefits', 'Calming scent', 'Enhances sleep quality']
+      }
+    ],
+    howToUse: {
+      night: [
+        'Cleanse your face thoroughly before bedtime',
+        'Pat dry with a soft towel',
+        'Take a generous amount (approx. 1g)',
+        'Apply evenly to face and neck',
+        'Massage gently in upward circular motions for 3-5 minutes',
+        'Leave overnight for deep repair',
+        'Use every night for best results'
+      ]
+    },
+    suitableFor: ['All skin types', 'Both men and women', 'Ages 25-60', 'Anti-aging concerns'],
+    productCategory: 'skin-care',
+    tags: ['night cream', 'night repair cream', 'anti-aging night cream', 'facial night cream', 'overnight cream', 'skin repair cream', 'brightening night cream', 'hydration cream', 'natural night cream', 'herbal night cream', 'best night cream', 'intensive repair cream', 'regenerating cream', 'retinol cream', 'collagen cream', 'wrinkle cream', 'dark spot cream', 'anti-wrinkle cream', 'age defying cream', 'peptide cream'],
+    seoKeywords: 'night cream, best night cream India, anti-aging night cream, facial repair cream, overnight face cream, skin regeneration cream, natural night cream, herbal night cream, retinol night cream, collagen boosting cream, wrinkle reducer cream, dark spot removal cream, intensive repair cream, age defying cream, peptide night cream'
+  }
+];
+
+export const getProductById = (id) => {
+  return products.find(product => product.id === id);
+};
+
+export default products;
+

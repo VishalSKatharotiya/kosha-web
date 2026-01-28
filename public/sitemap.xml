@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Home Page -->
+  <url>
+    <loc>https://koshaherbal.com/</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Product Pages -->
+  <url>
+    <loc>https://koshaherbal.com/product/aura-combo</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://koshaherbal.com/images/products/aura-combo-front.jpg</image:loc>
+      <image:title>Aura Combo - Day &amp; Night Cream</image:title>
+      <image:caption>Best facial combo with day and night cream for complete skincare</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://koshaherbal.com/product/aura-night-repair</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://koshaherbal.com/images/products/night-cream-front.jpg</image:loc>
+      <image:title>Aura Night Repair Cream</image:title>
+      <image:caption>Intensive night cream for skin repair and anti-aging</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Contact Page -->
+  <url>
+    <loc>https://koshaherbal.com/contact</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Reviews Page -->
+  <url>
+    <loc>https://koshaherbal.com/reviews</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Policy Pages -->
+  <url>
+    <loc>https://koshaherbal.com/privacy-policy</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <url>
+    <loc>https://koshaherbal.com/return-refund</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+</urlset>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Home Page -->
+  <url>
+    <loc>https://koshaherbal.com/</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- Product Pages -->
+  <url>
+    <loc>https://koshaherbal.com/product/aura-combo</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://koshaherbal.com/images/products/aura-combo-front.jpg</image:loc>
+      <image:title>Aura Combo - Day &amp; Night Cream</image:title>
+      <image:caption>Best facial combo with day and night cream for complete skincare</image:caption>
+    </image:image>
+  </url>
+  
+  <url>
+    <loc>https://koshaherbal.com/product/aura-night-repair</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <image:image>
+      <image:loc>https://koshaherbal.com/images/products/night-cream-front.jpg</image:loc>
+      <image:title>Aura Night Repair Cream</image:title>
+      <image:caption>Intensive night cream for skin repair and anti-aging</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- Contact Page -->
+  <url>
+    <loc>https://koshaherbal.com/contact</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Reviews Page -->
+  <url>
+    <loc>https://koshaherbal.com/reviews</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Policy Pages -->
+  <url>
+    <loc>https://koshaherbal.com/privacy-policy</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+  <url>
+    <loc>https://koshaherbal.com/return-refund</loc>
+    <lastmod>2026-01-28</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  
+</urlset>
+

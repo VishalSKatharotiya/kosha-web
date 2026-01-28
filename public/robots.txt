@@ -1,0 +1,67 @@
+# Kosha Herbal - Robots.txt
+
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Disallow admin/private sections (if any in future)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /checkout/
+Disallow: /cart/
+
+# Sitemap location
+Sitemap: https://koshaherbal.com/sitemap.xml
+
+# Crawl-delay (optional, adjust as needed)
+Crawl-delay: 1
+
+# Allow specific paths
+Allow: /product/*
+Allow: /contact
+Allow: /reviews
+Allow: /privacy-policy
+Allow: /return-refund
+
+# Optimize crawling
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Disallow admin/private sections (if any in future)
+Disallow: /admin/
+Disallow: /api/
+Disallow: /checkout/
+Disallow: /cart/
+
+# Sitemap location
+Sitemap: https://koshaherbal.com/sitemap.xml
+
+# Crawl-delay (optional, adjust as needed)
+Crawl-delay: 1
+
+# Allow specific paths
+Allow: /product/*
+Allow: /contact
+Allow: /reviews
+Allow: /privacy-policy
+Allow: /return-refund
+
+# Optimize crawling
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
