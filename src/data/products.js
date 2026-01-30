@@ -12,13 +12,12 @@ export const products = [
     price: 899,
     discount: 10,
     images: [
-      "/images/products/aura-combo-front.jpg",
-      "/images/products/aura-combo-back.jpg",
+      "/images/products/aura-combo-front.jpeg",
       "/images/products/aura-combo-unboxed.jpg",
+      "/images/products/aura-combo-day-night-cream.jpg",
       "/images/products/aura-day-cream.jpg",
       "/images/products/aura-night-cream.jpg",
-      "/images/products/aura-ingredients.jpg",
-      "/images/products/aura-lifestyle.jpg",
+      "/images/products/aura-fashwash.jpg",
     ],
     badges: ["BESTSELLER", "DERMATOLOGICALLY TESTED", "100% NATURAL"],
     freeGift: {
@@ -327,7 +326,7 @@ Our advanced formulation is developed in collaboration with dermatologists and u
     discount: 17,
     images: [
       "/images/products/aura-night-cream.jpg",
-      "/images/products/aura-night-cream-back.jpg",
+      "/images/products/aura-night-cream-with-girl.jpg",
       "/images/products/aura-night-cream-texture.jpg",
       "/images/products/aura-night-cream-lifestyle.jpg",
     ],
