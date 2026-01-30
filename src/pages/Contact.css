@@ -3,12 +3,24 @@
 .contact-page {
   background: linear-gradient(135deg, #ffffff 0%, #f8faf9 100%);
   min-height: 100vh;
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.contact-page .container {
+  max-width: var(--container-max);
+  width: 100%;
+  margin: 0 auto;
 }
 
 /* Hero Section */
 .contact-hero {
   padding: 140px 0 80px;
-  background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary-dark) 0%,
+    var(--primary) 100%
+  );
   color: var(--white);
   text-align: center;
   position: relative;
@@ -16,19 +28,23 @@
 }
 
 .contact-hero::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -10%;
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(212, 165, 116, 0.15) 0%, transparent 70%);
+  background: radial-gradient(
+    circle,
+    rgba(212, 165, 116, 0.15) 0%,
+    transparent 70%
+  );
   border-radius: 50%;
 }
 
 .contact-hero h1 {
   font-size: 3.5rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   margin-bottom: 20px;
   position: relative;
   z-index: 1;
@@ -61,7 +77,7 @@
 /* Contact Info Section */
 .contact-info h2 {
   font-size: 2.5rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: var(--text-primary);
   margin-bottom: 12px;
 }
@@ -95,14 +111,18 @@
 }
 
 .contact-card.highlight {
-  background: linear-gradient(135deg, #E8F5E9 0%, #F1F8E9 100%);
-  border-color: #25D366;
+  background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+  border-color: #25d366;
 }
 
 .contact-icon {
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-light) 100%
+  );
   color: var(--white);
   border-radius: 16px;
   display: flex;
@@ -112,7 +132,7 @@
 }
 
 .contact-icon.whatsapp {
-  background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+  background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
 }
 
 .contact-details {
@@ -163,6 +183,13 @@
   transform: translateX(4px);
 }
 
+.contact-details a,
+.contact-details p {
+  word-wrap: break-word;
+  word-break: break-word;
+  overflow-wrap: break-word;
+}
+
 /* Contact Form */
 .contact-form-wrapper {
   background: var(--white);
@@ -176,7 +203,7 @@
 
 .contact-form-wrapper h2 {
   font-size: 2.5rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: var(--text-primary);
   margin-bottom: 12px;
 }
@@ -218,7 +245,7 @@
   border: 2px solid var(--border-color);
   border-radius: 12px;
   font-size: 1rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   transition: all 0.3s ease;
   background: var(--white);
 }
@@ -248,15 +275,15 @@
 }
 
 .form-status.success {
-  background: #D1FAE5;
-  color: #065F46;
-  border: 2px solid #10B981;
+  background: #d1fae5;
+  color: #065f46;
+  border: 2px solid #10b981;
 }
 
 .form-status.error {
-  background: #FEE2E2;
-  color: #991B1B;
-  border: 2px solid #EF4444;
+  background: #fee2e2;
+  color: #991b1b;
+  border: 2px solid #ef4444;
 }
 
 .btn-submit {
@@ -294,7 +321,7 @@
 
 .faq-section h2 {
   font-size: 2.5rem;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   color: var(--text-primary);
   text-align: center;
   margin-bottom: 60px;
@@ -336,6 +363,10 @@
 
 /* Responsive Design */
 @media (max-width: 992px) {
+  .contact-page .container {
+    max-width: 90%;
+  }
+
   .contact-hero h1 {
     font-size: 2.5rem;
   }
@@ -343,11 +374,14 @@
   .contact-grid {
     grid-template-columns: 1fr;
     gap: 40px;
+    width: 100%;
   }
 
   .contact-form-wrapper {
     position: relative;
     top: 0;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .faq-grid {
@@ -356,6 +390,11 @@
 }
 
 @media (max-width: 768px) {
+  .contact-page .container {
+    max-width: 95%;
+    padding: 0 15px;
+  }
+
   .contact-hero {
     padding: 120px 0 60px;
   }
@@ -389,6 +428,8 @@
 
   .contact-form-wrapper {
     padding: 28px;
+    width: 100%;
+    box-sizing: border-box;
   }
 
   .form-row {
@@ -407,31 +448,94 @@
 }
 
 @media (max-width: 480px) {
+  .contact-hero {
+    padding: 100px 0 40px;
+  }
+
   .contact-hero h1 {
     font-size: 1.75rem;
+  }
+
+  .contact-hero p {
+    font-size: 0.9375rem;
+  }
+
+  .contact-content {
+    padding: 40px 0;
   }
 
   .contact-info h2,
   .contact-form-wrapper h2 {
     font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+
+  .info-subtitle,
+  .form-subtitle {
+    font-size: 0.9375rem;
+    margin-bottom: 24px;
   }
 
   .contact-card {
     padding: 16px;
-    gap: 16px;
+    gap: 12px;
+    border-radius: 12px;
   }
 
   .contact-icon {
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+  }
+
+  .contact-icon svg {
+    width: 20px !important;
+    height: 20px !important;
+  }
+
+  .contact-details h3 {
+    font-size: 1rem;
+    margin-bottom: 4px;
+  }
+
+  .contact-details a {
+    font-size: 0.9375rem;
+  }
+
+  .contact-details p {
+    font-size: 0.875rem;
   }
 
   .contact-form-wrapper {
-    padding: 20px;
+    padding: 20px 15px;
+  }
+
+  .form-group label {
+    font-size: 0.875rem;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 12px 14px;
+    font-size: 0.9375rem;
+  }
+
+  .btn-submit {
+    padding: 14px 24px;
+    font-size: 1rem;
+  }
+
+  .faq-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
   }
 
   .faq-item {
     padding: 20px;
   }
-}
 
+  .faq-item h3 {
+    font-size: 1rem;
+  }
+}

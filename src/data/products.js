@@ -18,6 +18,8 @@ export const products = [
       "/images/products/aura-day-cream.jpg",
       "/images/products/aura-night-cream.jpg",
       "/images/products/aura-fashwash.jpg",
+      "/images/products/aura-fashwash-with-girl.jpg",
+      "/images/products/kosha_why_do_you_love.jpg",
     ],
     badges: ["BESTSELLER", "DERMATOLOGICALLY TESTED", "100% NATURAL"],
     freeGift: {
@@ -329,6 +331,7 @@ Our advanced formulation is developed in collaboration with dermatologists and u
       "/images/products/aura-night-cream-with-girl.jpg",
       "/images/products/aura-night-cream-texture.jpg",
       "/images/products/aura-night-cream-lifestyle.jpg",
+      "/images/products/kosha_why_do_you_love.jpg",
     ],
     badges: ["NEW LAUNCH", "DERMATOLOGICALLY TESTED", "100% NATURAL"],
     freeGift: null,
