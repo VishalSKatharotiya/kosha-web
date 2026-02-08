@@ -312,9 +312,15 @@ Our advanced formulation is developed in collaboration with dermatologists and u
       "skincare routine",
       "organic face cream",
       "chemical free cream",
+      "daily moisturizer",
+      "glowing skin combo",
+      "skincare duo",
+      "complete face care",
+      "herbal radiance system",
+      "brightening facial kit",
     ],
     seoKeywords:
-      "day cream, night cream, facial cream, best face cream India, natural day cream, ayurvedic night cream, anti-aging cream, skin brightening cream, face moisturizer, herbal face cream, best facial combo, day night cream combo, organic skincare, natural moisturizer, chemical-free face cream, dermatologist recommended cream",
+      "day cream, night cream, facial cream, best face cream India, natural day cream, ayurvedic night cream, anti-aging cream, skin brightening cream, face moisturizer, herbal face cream, best facial combo, day night cream combo, organic skincare, natural moisturizer, chemical-free face cream, dermatologist recommended cream, best skincare combo India, radiance boosting kit, day night skincare routine, complete facial system, ayurvedic face kit, brightening cream combo",
   },
   {
     id: "aura-night-repair",
@@ -507,9 +513,14 @@ Our advanced formulation is developed in collaboration with dermatologists and u
       "anti-wrinkle cream",
       "age defying cream",
       "peptide cream",
+      "overnight rejuvenation",
+      "sleep repair cream",
+      "nightly skin care",
+      "deep healing cream",
+      "brightening night cream",
     ],
     seoKeywords:
-      "night cream, best night cream India, anti-aging night cream, facial repair cream, overnight face cream, skin regeneration cream, natural night cream, herbal night cream, retinol night cream, collagen boosting cream, wrinkle reducer cream, dark spot removal cream, intensive repair cream, age defying cream, peptide night cream",
+      "night cream, best night cream India, anti-aging night cream, facial repair cream, overnight face cream, skin regeneration cream, natural night cream, herbal night cream, retinol night cream, collagen boosting cream, wrinkle reducer cream, dark spot removal cream, intensive repair cream, age defying cream, peptide night cream, overnight skin repair cream, cellular renewal night cream, sleep mask alternative, best ayurvedic night repair, facial brightening night cream",
   },
 ];
 

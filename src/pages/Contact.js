@@ -1,39 +1,39 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { 
-  Phone, 
-  Envelope, 
-  MapPin, 
+import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import {
+  Phone,
+  Envelope,
+  MapPin,
   WhatsappLogo,
   Clock,
   InstagramLogo,
   FacebookLogo,
-  PaperPlaneTilt
-} from '@phosphor-icons/react';
-import { POLICIES } from '../constants/config';
-import './Contact.css';
+  PaperPlaneTilt,
+} from "@phosphor-icons/react";
+import { POLICIES } from "../constants/config";
+import "./Contact.css";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    subject: '',
-    message: ''
+    name: "",
+    email: "",
+    phone: "",
+    subject: "",
+    message: "",
   });
 
-  const [formStatus, setFormStatus] = useState({ type: '', message: '' });
+  const [formStatus, setFormStatus] = useState({ type: "", message: "" });
 
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     // Create WhatsApp message
     const whatsappMessage = `
 *New Contact Form Submission*
@@ -49,26 +49,26 @@ ${formData.message}
 
     const encodedMessage = encodeURIComponent(whatsappMessage);
     const whatsappURL = `https://wa.me/919898245608?text=${encodedMessage}`;
-    
+
     // Open WhatsApp
-    window.open(whatsappURL, '_blank');
-    
+    window.open(whatsappURL, "_blank");
+
     // Show success message
     setFormStatus({
-      type: 'success',
-      message: 'Opening WhatsApp... Please send the message!'
+      type: "success",
+      message: "Opening WhatsApp... Please send the message!",
     });
 
     // Reset form after 3 seconds
     setTimeout(() => {
       setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: ''
+        name: "",
+        email: "",
+        phone: "",
+        subject: "",
+        message: "",
       });
-      setFormStatus({ type: '', message: '' });
+      setFormStatus({ type: "", message: "" });
     }, 3000);
   };
 
@@ -76,66 +76,70 @@ ${formData.message}
     <>
       <Helmet>
         <title>Contact Us - Kosha Herbal | Get in Touch</title>
-        <meta 
-          name="description" 
-          content="Contact Kosha Herbal for queries about natural skincare products. Call: +91 9898245608 | Email: info@koshaherbal.com | Visit us in Ahmedabad, Gujarat" 
+        <meta
+          name="description"
+          content="Contact Kosha Herbal for queries about natural skincare products. Call: +91 9898245608 | Email: info@koshaherbal.com | Visit us in Ahmedabad, Gujarat"
         />
-        <meta 
-          name="keywords" 
-          content="contact kosha herbal, customer support, skincare queries, herbal products help, kosha herbal ahmedabad" 
+        <meta
+          name="keywords"
+          content="contact kosha herbal, customer support, skincare queries, herbal products help, kosha herbal ahmedabad, skincare consultation, herbal product support, Kosha Herbal help, best facial cream queries, contact for skin care"
         />
         <link rel="canonical" href="https://koshaherbal.com/contact" />
-        
+
         {/* Open Graph */}
         <meta property="og:title" content="Contact Us - Kosha Herbal" />
-        <meta property="og:description" content="Get in touch with Kosha Herbal. We're here to help with all your natural skincare needs." />
+        <meta
+          property="og:description"
+          content="Get in touch with Kosha Herbal. We're here to help with all your natural skincare needs."
+        />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://koshaherbal.com/contact" />
-        
+
         {/* Breadcrumb Schema */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
-            "itemListElement": [
+            itemListElement: [
               {
                 "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://koshaherbal.com"
+                position: 1,
+                name: "Home",
+                item: "https://koshaherbal.com",
               },
               {
                 "@type": "ListItem",
-                "position": 2,
-                "name": "Contact Us",
-                "item": "https://koshaherbal.com/contact"
-              }
-            ]
+                position: 2,
+                name: "Contact Us",
+                item: "https://koshaherbal.com/contact",
+              },
+            ],
           })}
         </script>
-        
+
         {/* ContactPage Schema */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ContactPage",
-            "name": "Contact Kosha Herbal",
-            "description": "Contact page for Kosha Herbal - Natural Skincare Products",
-            "url": "https://koshaherbal.com/contact",
-            "mainEntity": {
+            name: "Contact Kosha Herbal",
+            description:
+              "Contact page for Kosha Herbal - Natural Skincare Products",
+            url: "https://koshaherbal.com/contact",
+            mainEntity: {
               "@type": "Organization",
-              "name": "Kosha Herbal",
-              "telephone": "+919898245608",
-              "email": "info@koshaherbal.com",
-              "address": {
+              name: "Kosha Herbal",
+              telephone: "+919898245608",
+              email: "info@koshaherbal.com",
+              address: {
                 "@type": "PostalAddress",
-                "streetAddress": "N/R Gokul Party Plot, Raspan Circle, Nikol",
-                "addressLocality": "Ahmedabad",
-                "addressRegion": "Gujarat",
-                "postalCode": "382350",
-                "addressCountry": "IN"
-              }
-            }
+                streetAddress: "N/R Gokul Party Plot, Raspan Circle, Nikol",
+                addressLocality: "Ahmedabad",
+                addressRegion: "Gujarat",
+                postalCode: "382350",
+                addressCountry: "IN",
+              },
+            },
           })}
         </script>
       </Helmet>
@@ -145,7 +149,10 @@ ${formData.message}
         <section className="contact-hero">
           <div className="container">
             <h1>Get in Touch</h1>
-            <p>We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+            <p>
+              We'd love to hear from you. Send us a message and we'll respond as
+              soon as possible.
+            </p>
           </div>
         </section>
 
@@ -180,7 +187,9 @@ ${formData.message}
                     </div>
                     <div className="contact-details">
                       <h3>Email</h3>
-                      <a href="mailto:info@koshaherbal.com">info@koshaherbal.com</a>
+                      <a href="mailto:info@koshaherbal.com">
+                        info@koshaherbal.com
+                      </a>
                       <p>We'll reply within 24 hours</p>
                     </div>
                   </div>
@@ -192,8 +201,8 @@ ${formData.message}
                     </div>
                     <div className="contact-details">
                       <h3>WhatsApp</h3>
-                      <a 
-                        href="https://wa.me/919898245608?text=Hello%20Kosha%20Herbal!%20I%20have%20a%20question." 
+                      <a
+                        href="https://wa.me/919898245608?text=Hello%20Kosha%20Herbal!%20I%20have%20a%20question."
                         target="_blank"
                         rel="noopener noreferrer"
                       >
@@ -211,8 +220,10 @@ ${formData.message}
                     <div className="contact-details">
                       <h3>Address</h3>
                       <p>
-                        Kosha Herbal<br />
-                        N/R Gokul Party Plot Raspan Circle, Nikol, Ahmedabad - 382350
+                        Kosha Herbal
+                        <br />
+                        N/R Gokul Party Plot Raspan Circle, Nikol, Ahmedabad -
+                        382350
                       </p>
                     </div>
                   </div>
@@ -225,8 +236,11 @@ ${formData.message}
                     <div className="contact-details">
                       <h3>Business Hours</h3>
                       <p className="business-hours">
-                        <span className="day-label">Mon - Fri:</span> 9:00 AM - 7:00 PM<br />
-                        <span className="day-label">Sunday:</span> 10:00 AM - 5:00 PM
+                        <span className="day-label">Mon - Fri:</span> 9:00 AM -
+                        7:00 PM
+                        <br />
+                        <span className="day-label">Sunday:</span> 10:00 AM -
+                        5:00 PM
                       </p>
                     </div>
                   </div>
@@ -239,10 +253,18 @@ ${formData.message}
                     <div className="contact-details">
                       <h3>Follow Us</h3>
                       <div className="social-links">
-                        <a href="https://instagram.com/koshaherbal" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href="https://instagram.com/koshaherbal"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <InstagramLogo size={24} weight="bold" /> Instagram
                         </a>
-                        <a href="https://facebook.com/koshaherbal" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href="https://facebook.com/koshaherbal"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
                           <FacebookLogo size={24} weight="bold" /> Facebook
                         </a>
                       </div>
@@ -312,7 +334,9 @@ ${formData.message}
                       <option value="">Select a subject</option>
                       <option value="Product Inquiry">Product Inquiry</option>
                       <option value="Order Status">Order Status</option>
-                      <option value="Technical Support">Technical Support</option>
+                      <option value="Technical Support">
+                        Technical Support
+                      </option>
                       <option value="Feedback">Feedback</option>
                       <option value="Bulk Order">Bulk Order</option>
                       <option value="Other">Other</option>
@@ -344,8 +368,8 @@ ${formData.message}
                   </button>
 
                   <p className="form-note">
-                    * This will open WhatsApp with your message pre-filled. 
-                    You can review before sending.
+                    * This will open WhatsApp with your message pre-filled. You
+                    can review before sending.
                   </p>
                 </form>
               </div>
@@ -360,32 +384,51 @@ ${formData.message}
             <div className="faq-grid">
               <div className="faq-item">
                 <h3>🚚 What is the delivery time?</h3>
-                <p>We deliver within 3-5 business days across India. Free delivery on orders above ₹499.</p>
+                <p>
+                  We deliver within 3-5 business days across India. Free
+                  delivery on orders above ₹499.
+                </p>
               </div>
 
               <div className="faq-item">
                 <h3>🔄 What is your return policy?</h3>
-                <p>We offer a {POLICIES.RETURN_POLICY_DAYS}-day money-back guarantee. If you're not satisfied, contact us for a full refund.</p>
+                <p>
+                  We offer a {POLICIES.RETURN_POLICY_DAYS}-day money-back
+                  guarantee. If you're not satisfied, contact us for a full
+                  refund.
+                </p>
               </div>
 
               <div className="faq-item">
                 <h3>💳 What payment methods do you accept?</h3>
-                <p>We accept all major payment methods including UPI, Cards, Net Banking, and Cash on Delivery.</p>
+                <p>
+                  We accept all major payment methods including UPI, Cards, Net
+                  Banking, and Cash on Delivery.
+                </p>
               </div>
 
               <div className="faq-item">
                 <h3>🌿 Are your products 100% natural?</h3>
-                <p>Yes! All our products are made from 100% natural herbal ingredients with no harmful chemicals.</p>
+                <p>
+                  Yes! All our products are made from 100% natural herbal
+                  ingredients with no harmful chemicals.
+                </p>
               </div>
 
               <div className="faq-item">
                 <h3>📦 How can I track my order?</h3>
-                <p>Once shipped, you'll receive a tracking link via SMS and email. You can also WhatsApp us for updates.</p>
+                <p>
+                  Once shipped, you'll receive a tracking link via SMS and
+                  email. You can also WhatsApp us for updates.
+                </p>
               </div>
 
               <div className="faq-item">
                 <h3>💬 How can I get quick support?</h3>
-                <p>WhatsApp us at +91 9898245608 for instant support. We're available Mon-Sat, 9 AM - 7 PM.</p>
+                <p>
+                  WhatsApp us at +91 9898245608 for instant support. We're
+                  available Mon-Sat, 9 AM - 7 PM.
+                </p>
               </div>
             </div>
           </div>
@@ -396,4 +439,3 @@ ${formData.message}
 };
 
 export default Contact;
-
