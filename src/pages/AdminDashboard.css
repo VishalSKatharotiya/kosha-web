@@ -1,0 +1,178 @@
+/* Admin Dashboard Enhancements */
+.admin-dashboard {
+  padding: 3rem 0;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #eee;
+}
+
+.admin-tabs {
+  display: flex;
+  gap: 1rem;
+}
+
+.admin-tabs button {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  background: #f5f5f5;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.admin-tabs button.active {
+  background: #000;
+  color: #fff;
+}
+
+.admin-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+  gap: 1rem;
+}
+
+.admin-search {
+  flex: 1;
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+ /* Admin Form Styles */
+.admin-form .form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+}
+
+.admin-form h3 {
+  margin-bottom: 20px;
+  font-size: 1.1rem;
+  color: var(--primary);
+  border-bottom: 1px solid #eee;
+  padding-bottom: 8px;
+}
+
+.admin-form input, 
+.admin-form textarea, 
+.admin-form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-family: inherit;
+}
+
+.admin-form .form-row {
+  display: flex;
+  gap: 15px;
+}
+
+.order-preview {
+  background: #fdfaf0;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 15px 0;
+  border: 1px dashed #faad14;
+}
+
+.admin-form .place-order-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .admin-form .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+.customer-cell, .contact-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.customer-cell strong {
+  color: #333;
+}
+
+.city-text {
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.contact-cell span {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th, .admin-table td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.admin-table th {
+  background: #fafafa;
+  font-weight: 600;
+}
+
+.table-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.status-pill {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status-pill.confirmed { background: #e6f7ff; color: #1890ff; }
+.status-pill.pending { background: #fff7e6; color: #fa8c16; }
+
+.add-btn {
+  background: #000;
+  color: #fff;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.edit-btn {
+  color: #1890ff;
+  border: none;
+  background: none;
+  margin-right: 1rem;
+  cursor: pointer;
+}
+
+.delete-btn {
+  color: #ff4d4f;
+  border: none;
+  background: none;
+  cursor: pointer;
+}

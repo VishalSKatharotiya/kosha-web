@@ -6,12 +6,22 @@ import Features from "../components/home/Features";
 import ProductCard from "../components/home/ProductCard";
 import IngredientsSlider from "../components/home/IngredientsSlider";
 import Reviews from "../components/home/Reviews";
-import products from "../data/products";
+import { getProducts } from "../data/products";
 import commitments from "../data/commitments";
 import { POLICIES } from "../constants/config";
 import "./Home.css";
 
 const Home = () => {
+  const [products, setProducts] = React.useState([]);
+
+  React.useEffect(() => {
+    const fetchProducts = async () => {
+      const data = await getProducts();
+      setProducts(data);
+    };
+    fetchProducts();
+  }, []);
+
   return (
     <>
       {/* SEO Meta Tags */}

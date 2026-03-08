@@ -1,13 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
-import ConfettiBoom from 'react-confetti-boom';
-import { 
-  WhatsappLogo, 
-  Star, 
-  StarHalf, 
-  ShoppingBag, 
-  Truck, 
+import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
+import ConfettiBoom from "react-confetti-boom";
+import {
+  ShoppingCart,
+  Star,
+  StarHalf,
+  ShoppingBag,
+  Truck,
   ArrowLeft,
   Package,
   CheckCircle,
@@ -15,18 +15,36 @@ import {
   Sun,
   Moon,
   Clock,
-  Tag as TagIcon
-} from '@phosphor-icons/react';
-import { getProductById } from '../data/products';
-import { sendWhatsAppOrder } from '../utils/whatsapp';
-import { POLICIES } from '../constants/config';
-import './ProductPage.css';
+  Tag as TagIcon,
+} from "@phosphor-icons/react";
+import { getProductById } from "../data/products";
+import { getReviewsByProduct } from "../data/reviews";
+import { useCart } from "../context/CartContext";
+import { POLICIES } from "../constants/config";
+import Reviews from "../components/home/Reviews";
+import "./ProductPage.css";
 
 const ProductPage = () => {
   const { id } = useParams();
-  const product = getProductById(id);
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [selectedImage, setSelectedImage] = useState(0);
   const [showSavingsConfetti, setShowSavingsConfetti] = useState(false);
+  const [productReviews, setProductReviews] = useState([]);
+  const { addToCart } = useCart();
+
+  useEffect(() => {
+    const fetchProduct = async () => {
+      setLoading(true);
+      const data = await getProductById(id);
+      setProduct(data);
+      setLoading(false);
+      // Fetch product-specific reviews
+      const reviews = await getReviewsByProduct(id);
+      setProductReviews(reviews);
+    };
+    fetchProduct();
+  }, [id]);
 
   // Scroll to top and trigger confetti when page loads
   useEffect(() => {
@@ -37,12 +55,28 @@ const ProductPage = () => {
     }, 500);
   }, [id]);
 
+  if (loading) {
+    return (
+      <div
+        className="container"
+        style={{ padding: "100px 0", textAlign: "center" }}
+      >
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
+
   if (!product) {
     return (
-      <div className="container" style={{ padding: '100px 0', textAlign: 'center' }}>
+      <div
+        className="container"
+        style={{ padding: "100px 0", textAlign: "center" }}
+      >
         <h1>Product Not Found</h1>
         <p>The product you're looking for doesn't exist.</p>
-        <Link to="/" className="btn btn-primary">Go Back Home</Link>
+        <Link to="/" className="btn btn-primary">
+          Go Back Home
+        </Link>
       </div>
     );
   }
@@ -53,43 +87,87 @@ const ProductPage = () => {
     const hasHalfStar = rating % 1 !== 0;
 
     for (let i = 0; i < fullStars; i++) {
-      stars.push(<Star key={`full-${i}`} size={20} weight="fill" className="star-filled" />);
+      stars.push(
+        <Star
+          key={`full-${i}`}
+          size={20}
+          weight="fill"
+          className="star-filled"
+        />,
+      );
     }
 
     if (hasHalfStar) {
-      stars.push(<StarHalf key="half" size={20} weight="fill" className="star-filled" />);
+      stars.push(
+        <StarHalf key="half" size={20} weight="fill" className="star-filled" />,
+      );
     }
 
     const emptyStars = 5 - Math.ceil(rating);
     for (let i = 0; i < emptyStars; i++) {
-      stars.push(<Star key={`empty-${i}`} size={20} weight="regular" className="star-empty" />);
+      stars.push(
+        <Star
+          key={`empty-${i}`}
+          size={20}
+          weight="regular"
+          className="star-empty"
+        />,
+      );
     }
 
     return stars;
   };
 
-  const handleBuyNow = () => {
-    sendWhatsAppOrder(product.name, product.price);
+  const handleAddToCart = () => {
+    addToCart(product);
   };
 
-  const savings = product.mrp - product.price;
-  const discountPercent = Math.round((savings / product.mrp) * 100);
+  const activeMrp = product.originalPrice || product.mrp;
+  const savings = activeMrp - product.price;
+  const discountPercent = Math.round((savings / activeMrp) * 100);
 
   return (
     <>
       <Helmet>
-        <title>{product.name} | Buy Best {product.category} Online - Kosha Herbal</title>
-        <meta name="description" content={`Buy ${product.name} - ${product.subtitle}. ${product.description.substring(0, 155)}... ₹${product.price} only. Free delivery. Order now!`} />
-        <meta name="keywords" content={product.seoKeywords || product.tags.join(', ')} />
+        <title>
+          {product.name} | Buy Best{" "}
+          {typeof product.category === "object"
+            ? product.category?.name
+            : product.category}{" "}
+          Online - Kosha Herbal
+        </title>
+        <meta
+          name="description"
+          content={`Buy ${product.name} - ${product.subtitle}. ${product.description.substring(0, 155)}... ₹${product.price} only. Free delivery. Order now!`}
+        />
+        <meta
+          name="keywords"
+          content={product.seoKeywords || (product.tags || []).join(", ")}
+        />
         <meta name="robots" content="index, follow, max-image-preview:large" />
-        <link rel="canonical" href={`https://koshaherbal.com/product/${product.id}`} />
-        
+        <link
+          rel="canonical"
+          href={`https://koshaherbal.com/product/${product.id}`}
+        />
+
         {/* Open Graph */}
         <meta property="og:type" content="product" />
-        <meta property="og:title" content={`${product.name} - ${product.subtitle}`} />
-        <meta property="og:description" content={product.description.substring(0, 200)} />
-        <meta property="og:image" content={`https://koshaherbal.com${product.images[0]}`} />
-        <meta property="og:url" content={`https://koshaherbal.com/product/${product.id}`} />
+        <meta
+          property="og:title"
+          content={`${product.name} - ${product.subtitle}`}
+        />
+        <meta
+          property="og:description"
+          content={product.description.substring(0, 200)}
+        />
+        <meta
+          property="og:image"
+          content={`https://koshaherbal.com${(product.images || [])[0] || product.image}`}
+        />
+        <meta
+          property="og:url"
+          content={`https://koshaherbal.com/product/${product.id}`}
+        />
         <meta property="og:price:amount" content={product.price} />
         <meta property="og:price:currency" content="INR" />
         <meta property="product:brand" content="Kosha Herbal" />
@@ -98,91 +176,102 @@ const ProductPage = () => {
         <meta property="product:price:amount" content={product.price} />
         <meta property="product:price:currency" content="INR" />
         <meta property="product:retailer_item_id" content={product.id} />
-        
+
         {/* Twitter Card */}
         <meta name="twitter:card" content="product" />
-        <meta name="twitter:title" content={`${product.name} - ${product.subtitle}`} />
-        <meta name="twitter:description" content={product.description.substring(0, 200)} />
-        <meta name="twitter:image" content={`https://koshaherbal.com${product.images[0]}`} />
+        <meta
+          name="twitter:title"
+          content={`${product.name} - ${product.subtitle}`}
+        />
+        <meta
+          name="twitter:description"
+          content={product.description.substring(0, 200)}
+        />
+        <meta
+          name="twitter:image"
+          content={`https://koshaherbal.com${(product.images || [])[0] || product.image}`}
+        />
         <meta name="twitter:label1" content="Price" />
         <meta name="twitter:data1" content={`₹${product.price}`} />
         <meta name="twitter:label2" content="Availability" />
         <meta name="twitter:data2" content="In Stock" />
-        
+
         {/* Product Schema */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org/",
             "@type": "Product",
-            "name": product.name,
-            "description": product.description,
-            "image": product.images.map(img => `https://koshaherbal.com${img}`),
-            "brand": {
+            name: product.name,
+            description: product.description,
+            image: (product.images || [product.image]).map(
+              (img) => `https://koshaherbal.com${img}`,
+            ),
+            brand: {
               "@type": "Brand",
-              "name": "Kosha Herbal"
+              name: "Kosha Herbal",
             },
-            "sku": product.id,
-            "mpn": product.id,
-            "offers": {
+            sku: product.id,
+            mpn: product.id,
+            offers: {
               "@type": "Offer",
-              "url": `https://koshaherbal.com/product/${product.id}`,
-              "priceCurrency": "INR",
-              "price": product.price,
-              "priceValidUntil": "2026-12-31",
-              "itemCondition": "https://schema.org/NewCondition",
-              "availability": "https://schema.org/InStock",
-              "seller": {
+              url: `https://koshaherbal.com/product/${product.id}`,
+              priceCurrency: "INR",
+              price: product.price,
+              priceValidUntil: "2026-12-31",
+              itemCondition: "https://schema.org/NewCondition",
+              availability: "https://schema.org/InStock",
+              seller: {
                 "@type": "Organization",
-                "name": "Kosha Herbal"
-              }
-            },
-            "aggregateRating": {
-              "@type": "AggregateRating",
-              "ratingValue": product.rating,
-              "reviewCount": product.reviewCount,
-              "bestRating": "5",
-              "worstRating": "1"
-            },
-            "review": {
-              "@type": "Review",
-              "reviewRating": {
-                "@type": "Rating",
-                "ratingValue": product.rating,
-                "bestRating": "5"
+                name: "Kosha Herbal",
               },
-              "author": {
+            },
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: product.rating,
+              reviewCount: product.reviewCount,
+              bestRating: "5",
+              worstRating: "1",
+            },
+            review: {
+              "@type": "Review",
+              reviewRating: {
+                "@type": "Rating",
+                ratingValue: product.rating,
+                bestRating: "5",
+              },
+              author: {
                 "@type": "Organization",
-                "name": "Kosha Herbal Customers"
-              }
-            }
+                name: "Kosha Herbal Customers",
+              },
+            },
           })}
         </script>
-        
+
         {/* Breadcrumb Schema */}
         <script type="application/ld+json">
           {JSON.stringify({
             "@context": "https://schema.org",
             "@type": "BreadcrumbList",
-            "itemListElement": [
+            itemListElement: [
               {
                 "@type": "ListItem",
-                "position": 1,
-                "name": "Home",
-                "item": "https://koshaherbal.com"
+                position: 1,
+                name: "Home",
+                item: "https://koshaherbal.com",
               },
               {
                 "@type": "ListItem",
-                "position": 2,
-                "name": "Products",
-                "item": "https://koshaherbal.com/#products"
+                position: 2,
+                name: "Products",
+                item: "https://koshaherbal.com/#products",
               },
               {
                 "@type": "ListItem",
-                "position": 3,
-                "name": product.name,
-                "item": `https://koshaherbal.com/product/${product.id}`
-              }
-            ]
+                position: 3,
+                name: product.name,
+                item: `https://koshaherbal.com/product/${product.id}`,
+              },
+            ],
           })}
         </script>
       </Helmet>
@@ -190,10 +279,10 @@ const ProductPage = () => {
       {/* Confetti Effect for Savings - Top Level for Visibility */}
       {showSavingsConfetti && (
         <div className="savings-confetti-container">
-          <ConfettiBoom 
+          <ConfettiBoom
             mode="boom"
             particleCount={500}
-            colors={['#FFD700', '#FFA500']}
+            colors={["#FFD700", "#FFA500"]}
             shapeSize={13}
             spreadDeg={360}
             effectDuration={6000}
@@ -214,27 +303,31 @@ const ProductPage = () => {
             {/* Left Side - Images */}
             <div className="product-gallery">
               <div className="main-image">
-                <img 
-                  src={product.images[selectedImage]} 
+                <img
+                  src={(product.images || [])[selectedImage] || product.image}
                   alt={product.name}
                   onError={(e) => {
-                    e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="600" height="600"%3E%3Crect fill="%23f0f0f0" width="600" height="600"/%3E%3Ctext fill="%23999" x="50%25" y="50%25" text-anchor="middle" dy=".3em" font-size="24"%3E' + product.name + '%3C/text%3E%3C/svg%3E';
+                    e.target.src =
+                      'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="600" height="600"%3E%3Crect fill="%23f0f0f0" width="600" height="600"/%3E%3Ctext fill="%23999" x="50%25" y="50%25" text-anchor="middle" dy=".3em" font-size="24"%3E' +
+                      product.name +
+                      "%3C/text%3E%3C/svg%3E";
                   }}
                 />
               </div>
 
               <div className="thumbnail-images">
-                {product.images.map((image, index) => (
-                  <div 
+                {(product.images || []).map((image, index) => (
+                  <div
                     key={index}
-                    className={`thumbnail ${selectedImage === index ? 'active' : ''}`}
+                    className={`thumbnail ${selectedImage === index ? "active" : ""}`}
                     onClick={() => setSelectedImage(index)}
                   >
-                    <img 
-                      src={image} 
+                    <img
+                      src={image}
                       alt={`${product.name} view ${index + 1}`}
                       onError={(e) => {
-                        e.target.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect fill="%23f0f0f0" width="100" height="100"/%3E%3C/svg%3E';
+                        e.target.src =
+                          'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100"%3E%3Crect fill="%23f0f0f0" width="100" height="100"/%3E%3C/svg%3E';
                       }}
                     />
                   </div>
@@ -246,7 +339,9 @@ const ProductPage = () => {
             <div className="product-info">
               {/* Category Badge */}
               <div className="product-category-badge">
-                {product.category}
+                {typeof product.category === "object"
+                  ? product.category?.name
+                  : product.category}
               </div>
 
               <h1 className="product-title">{product.name}</h1>
@@ -266,7 +361,7 @@ const ProductPage = () => {
               <div className="product-pricing-section">
                 <div className="price-row">
                   <span className="price-label">MRP:</span>
-                  <span className="price-mrp">₹{product.mrp}</span>
+                  <span className="price-mrp">₹{activeMrp}</span>
                 </div>
                 <div className="price-row main">
                   <span className="price-label">Price:</span>
@@ -280,16 +375,18 @@ const ProductPage = () => {
               </div>
 
               {/* Free Gift */}
-              {product.freeGift && (
+              {(product.freeItemName || product.freeGift) && (
                 <div className="free-gift-banner">
                   <Package size={20} weight="fill" />
-                  <strong>FREE GIFT:</strong> {product.freeGift.name} (Worth ₹{product.freeGift.value})
+                  <strong>FREE GIFT:</strong>{" "}
+                  {product.freeItemName || product.freeGift?.name} (Worth ₹
+                  {product.freeItemValue || product.freeGift?.value})
                 </div>
               )}
 
               {/* Tags */}
               <div className="product-tags">
-                {product.tags.map((tag, index) => (
+                {(product.tags || []).map((tag, index) => (
                   <span key={index} className="tag">
                     <TagIcon size={14} weight="fill" />
                     {tag}
@@ -299,12 +396,12 @@ const ProductPage = () => {
 
               {/* Buy Buttons */}
               <div className="buy-actions">
-                <button 
-                  className="btn btn-whatsapp btn-large"
-                  onClick={handleBuyNow}
+                <button
+                  className="btn btn-primary btn-large"
+                  onClick={handleAddToCart}
                 >
-                  <WhatsappLogo size={20} weight="fill" />
-                  BUY NOW ON WHATSAPP
+                  <ShoppingCart size={20} weight="fill" />
+                  ADD TO CART
                 </button>
                 <Link to="/" className="btn btn-secondary btn-large">
                   <ShoppingBag size={20} weight="bold" />
@@ -319,7 +416,11 @@ const ProductPage = () => {
                   Suitable For
                 </h3>
                 <div className="suitable-tags">
-                  {product.suitableFor.map((item, index) => (
+                  {(
+                    product.howToUse?.suitableFor ||
+                    product.suitableFor ||
+                    []
+                  ).map((item, index) => (
                     <span key={index} className="suitable-tag">
                       <CheckCircle size={16} weight="fill" />
                       {item}
@@ -362,19 +463,29 @@ const ProductPage = () => {
               <p>{product.description}</p>
             </div>
 
+            {/* Reviews section — product-specific, reuses Reviews carousel */}
+            {productReviews?.length > 0 && (
+              <Reviews
+                reviews={productReviews}
+                title="What Our Customers Say"
+              />
+            )}
+
             <div className="detail-box">
               <h2>Key Benefits</h2>
               <ul className="benefits-list">
-                {product.keyBenefits.map((benefit, index) => (
-                  <li key={index}>✓ {benefit}</li>
-                ))}
+                {(product.benefits || product.keyBenefits || []).map(
+                  (benefit, index) => (
+                    <li key={index}>✓ {benefit}</li>
+                  ),
+                )}
               </ul>
             </div>
 
             <div className="detail-box">
               <h2>What's Included</h2>
               <ul className="package-list">
-                {product.package.map((item, index) => (
+                {(product.package || []).map((item, index) => (
                   <li key={index}>
                     <strong>{item.item}</strong> - {item.quantity}
                   </li>
@@ -386,7 +497,7 @@ const ProductPage = () => {
               <div className="detail-box">
                 <h2>Day Cream Features</h2>
                 <ul className="benefits-list">
-                  {product.dayCream.features.map((feature, index) => (
+                  {(product.dayCream.features || []).map((feature, index) => (
                     <li key={index}>☀️ {feature}</li>
                   ))}
                 </ul>
@@ -397,7 +508,7 @@ const ProductPage = () => {
               <div className="detail-box">
                 <h2>Night Cream Features</h2>
                 <ul className="benefits-list">
-                  {product.nightCream.features.map((feature, index) => (
+                  {(product.nightCream.features || []).map((feature, index) => (
                     <li key={index}>🌙 {feature}</li>
                   ))}
                 </ul>
@@ -406,20 +517,23 @@ const ProductPage = () => {
 
             <div className="detail-box">
               <h2>Natural Ingredients</h2>
-              
-              {product.dayIngredients && (
+
+              {/* Day Ingredients — from product.ingredients (stored as dayIngredients) */}
+              {(product.ingredients || []).length > 0 && (
                 <>
                   <h3 className="ingredients-section-title">
                     <Sun size={20} weight="fill" />
                     Aura Bright Cream (Day Cream)
                   </h3>
                   <div className="ingredients-grid">
-                    {product.dayIngredients.map((ingredient, index) => (
+                    {(product.ingredients || []).map((ingredient, index) => (
                       <div key={index} className="ingredient-item">
                         <h4>{ingredient.name}</h4>
-                        <p className="scientific-name">{ingredient.scientificName}</p>
+                        <p className="scientific-name">
+                          {ingredient.scientificName}
+                        </p>
                         <ul>
-                          {ingredient.benefits.map((benefit, idx) => (
+                          {(ingredient.benefits || []).map((benefit, idx) => (
                             <li key={idx}>{benefit}</li>
                           ))}
                         </ul>
@@ -429,24 +543,32 @@ const ProductPage = () => {
                 </>
               )}
 
-              {product.nightIngredients && (
+              {/* Night Ingredients — stored in howToUse.nightIngredients */}
+              {(product.howToUse?.nightIngredients || []).length > 0 && (
                 <>
-                  <h3 className="ingredients-section-title" style={{ marginTop: '40px' }}>
+                  <h3
+                    className="ingredients-section-title"
+                    style={{ marginTop: "40px" }}
+                  >
                     <Moon size={20} weight="fill" />
                     Aura Restore Cream (Night Cream)
                   </h3>
                   <div className="ingredients-grid">
-                    {product.nightIngredients.map((ingredient, index) => (
-                      <div key={index} className="ingredient-item">
-                        <h4>{ingredient.name}</h4>
-                        <p className="scientific-name">{ingredient.scientificName}</p>
-                        <ul>
-                          {ingredient.benefits.map((benefit, idx) => (
-                            <li key={idx}>{benefit}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    ))}
+                    {(product.howToUse.nightIngredients || []).map(
+                      (ingredient, index) => (
+                        <div key={index} className="ingredient-item">
+                          <h4>{ingredient.name}</h4>
+                          <p className="scientific-name">
+                            {ingredient.scientificName}
+                          </p>
+                          <ul>
+                            {(ingredient.benefits || []).map((benefit, idx) => (
+                              <li key={idx}>{benefit}</li>
+                            ))}
+                          </ul>
+                        </div>
+                      ),
+                    )}
                   </div>
                 </>
               )}
