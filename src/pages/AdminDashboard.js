@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { Package, ShoppingCart, Tag } from '@phosphor-icons/react';
+import { Package, ShoppingCart, Tag, Ticket } from '@phosphor-icons/react';
 import ProductManager from '../components/admin/ProductManager';
 import OrderManager from '../components/admin/OrderManager';
 import CategoryManager from '../components/admin/CategoryManager';
+import CouponManager from '../components/admin/CouponManager';
 import '../components/admin/Admin.css';
 
 const AdminDashboard = () => {
@@ -12,6 +13,7 @@ const AdminDashboard = () => {
     { key: 'orders', label: 'Orders', icon: ShoppingCart },
     { key: 'products', label: 'Products', icon: Package },
     { key: 'categories', label: 'Categories', icon: Tag },
+    { key: 'coupons', label: 'Coupons', icon: Ticket },
   ];
 
   return (
@@ -35,6 +37,7 @@ const AdminDashboard = () => {
       {activeTab === 'orders' && <OrderManager key="orders" />}
       {activeTab === 'products' && <ProductManager key="products" />}
       {activeTab === 'categories' && <CategoryManager key="categories" />}
+      {activeTab === 'coupons' && <CouponManager key="coupons" />}
     </div>
   );
 };

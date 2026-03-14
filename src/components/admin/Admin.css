@@ -183,14 +183,13 @@
 
 .premium-admin-table thead tr,
 .table-head-gradient {
-  background: linear-gradient(135deg, #1a2e1a 0%, #2d5a27 100%);
+  background: seagreen;
   border-bottom: none;
 }
 
 .premium-admin-table th {
   padding: 1rem 1.25rem;
-  font-size: 0.72rem;
-  font-weight: 700;
+  /* font-size: 0.72rem; */
   text-transform: uppercase;
   letter-spacing: 0.8px;
   color: rgba(255, 255, 255, 0.85);
@@ -296,7 +295,7 @@
 }
 
 .customer-cell-premium span {
-  font-size: 0.8rem;
+  /* font-size: 0.8rem; */
   color: #888;
 }
 
@@ -602,8 +601,8 @@
   background: white;
   border-radius: 24px;
   width: 100%;
-  max-width: 80%;
-  max-height: 92vh;
+  max-width: 100%;
+  max-height: 95vh;
   display: flex;
   flex-direction: column;
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2);
@@ -611,11 +610,11 @@
 }
 
 .premium-modal.wide {
-  max-width: 860px;
+  max-width: 100%;
 }
 
 .premium-modal.ultra-wide {
-  max-width: 1100px;
+  /* max-width: 1100px; */
 }
 
 /* ── Modal Overlay (portal, always fixed to viewport) ── */
@@ -921,9 +920,9 @@
   align-items: center;
   gap: 6px;
   padding: 0.6rem 1.2rem;
-  background: #F0F9F4;
-  border: 1.5px dashed #6FCF97;
-  color: #2D6A4F;
+  background: #f0f9f4;
+  border: 1.5px dashed #6fcf97;
+  color: #2d6a4f;
   border-radius: 10px;
   font-weight: 700;
   font-size: 0.85rem;
@@ -935,8 +934,8 @@
 }
 
 .add-row-btn:hover {
-  background: #D4EDDA;
-  border-color: #2D6A4F;
+  background: #d4edda;
+  border-color: #2d6a4f;
 }
 
 /* ── Modal Footer ── */

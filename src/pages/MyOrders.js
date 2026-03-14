@@ -8,6 +8,7 @@ import {
   Calendar,
   CurrencyInr,
   CaretRight,
+  Tag,
 } from "@phosphor-icons/react";
 import api from "../services/api";
 import { useAuth } from "../context/AuthContext";
@@ -116,6 +117,17 @@ const MyOrders = () => {
                       </span>
                     </div>
                   </div>
+                  {order.couponCode && (
+                    <div className="summary-item">
+                      <Tag size={20} color="#15803d" />
+                      <div className="summary-text">
+                        <span className="label">Coupon Applied</span>
+                        <span className="value" style={{ color: '#15803d', fontWeight: 700 }}>
+                          {order.couponCode} · Saved ₹{order.discount}
+                        </span>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 <div className="order-items-minimal">

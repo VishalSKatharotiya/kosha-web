@@ -18,6 +18,7 @@ import {
   User,
   CaretUp,
   CaretDown,
+  Tag,
 } from "@phosphor-icons/react";
 
 const STATUSES = [
@@ -42,6 +43,11 @@ const OrderManager = () => {
   const [updatingStatus, setUpdatingStatus] = useState(false);
   const [sortField, setSortField] = useState("createdAt");
   const [sortDir, setSortDir] = useState("desc");
+
+  // Admin coupon state for Create Order modal
+  const [adminCouponCode, setAdminCouponCode] = useState('');
+  const [adminCouponResult, setAdminCouponResult] = useState(null);
+  const [adminCouponError, setAdminCouponError] = useState('');
 
   const trackingInputRef = useRef(null);
 
@@ -75,6 +81,9 @@ const OrderManager = () => {
     const p = products.find((pr) => pr.id === item.productId);
     return sum + (p ? p.price * item.quantity : 0);
   }, 0);
+  const orderFinalTotal = adminCouponResult
+    ? adminCouponResult.finalTotal
+    : orderTotal;
 
   const fetchData = async () => {
     setLoading(true);
@@ -198,8 +207,9 @@ const OrderManager = () => {
           quantity: item.quantity,
         })),
         total: orderTotal,
-        discount: 0,
-        finalTotal: orderTotal,
+        couponCode: adminCouponResult ? adminCouponCode : null,
+        discount: adminCouponResult?.discountAmount || 0,
+        finalTotal: orderFinalTotal,
         paymentMethod: newOrder.paymentMethod,
       };
       await api.post("/payment/create", payload);
@@ -216,6 +226,9 @@ const OrderManager = () => {
         paymentMethod: "cod",
       });
       setOrderItems([{ productId: "", quantity: 1 }]);
+      setAdminCouponCode('');
+      setAdminCouponResult(null);
+      setAdminCouponError('');
       fetchData();
     } catch (error) {
       const msg = error?.response?.data?.message || "Error creating order";
@@ -422,6 +435,13 @@ const OrderManager = () => {
                   </td>
                   <td>
                     <span className="price-text">₹{order.finalTotal}</span>
+                    {order.couponCode && (
+                      <div style={{ marginTop: 4 }}>
+                        <span style={{ fontSize: '0.72rem', background: '#f0fdf4', color: '#15803d', border: '1px solid #86efac', borderRadius: 4, padding: '1px 6px', display: 'inline-flex', alignItems: 'center', gap: 3 }}>
+                          <Tag size={10} weight="bold" />{order.couponCode}
+                        </span>
+                      </div>
+                    )}
                   </td>
                   <td onClick={(e) => e.stopPropagation()}>
                     <span
@@ -633,9 +653,17 @@ const OrderManager = () => {
                       <span>Sub-total</span>
                       <strong>₹{selectedOrder.total}</strong>
                     </div>
+                    {selectedOrder.couponCode && (
+                      <div className="info-row">
+                        <span>Coupon Code</span>
+                        <strong style={{ color: '#15803d', display: 'flex', alignItems: 'center', gap: 4 }}>
+                          <Tag size={14} weight="bold" />{selectedOrder.couponCode}
+                        </strong>
+                      </div>
+                    )}
                     <div className="info-row">
                       <span>Discount</span>
-                      <strong>₹{selectedOrder.discount || 0}</strong>
+                      <strong style={{ color: selectedOrder.discount > 0 ? '#15803d' : undefined }}>- ₹{selectedOrder.discount || 0}</strong>
                     </div>
                     <div className="info-row highlight-row">
                       <span>Final Total</span>

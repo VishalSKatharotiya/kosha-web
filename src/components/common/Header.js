@@ -94,10 +94,7 @@ const Header = () => {
       {/* Top Offer Banner */}
       <div className="offer-banner">
         <div className="container">
-          <p>
-            FREE DELIVERY on orders above ₹499 | 10% OFF on First Order | Use
-            Code: FIRST10
-          </p>
+          <p>{process.env.REACT_APP_HEADER_PROMO}</p>
         </div>
       </div>
 
