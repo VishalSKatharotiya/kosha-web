@@ -23,6 +23,17 @@ export const AuthProvider = ({ children }) => {
     const { token, user } = response.data;
     localStorage.setItem('token', token);
     localStorage.setItem('user', JSON.stringify(user));
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    setUser(user);
+    return user;
+  };
+
+  const verifyPinLogin = async (email, pin) => {
+    const response = await api.post('/auth/verify-pin-login', { email, pin });
+    const { token, user } = response.data;
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+    api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
     setUser(user);
     return user;
   };
@@ -47,6 +58,7 @@ export const AuthProvider = ({ children }) => {
     user,
     loading,
     login,
+    verifyPinLogin,
     signup,
     logout,
     isAdmin: user?.isAdmin || false,
