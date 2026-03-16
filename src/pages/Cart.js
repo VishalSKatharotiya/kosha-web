@@ -29,10 +29,10 @@ const Cart = () => {
   const [orderId, setOrderId] = useState(null);
 
   // Coupon state
-  const [couponInput, setCouponInput] = useState('');
+  const [couponInput, setCouponInput] = useState("");
   const [couponLoading, setCouponLoading] = useState(false);
   const [appliedCoupon, setAppliedCoupon] = useState(null); // { code, discountAmount, finalTotal }
-  const [couponError, setCouponError] = useState('');
+  const [couponError, setCouponError] = useState("");
 
   const [formData, setFormData] = useState({
     name: user?.name || "",
@@ -51,32 +51,39 @@ const Cart = () => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-    if (errors[name]) setErrors({ ...errors, [name]: '' });
+    if (errors[name]) setErrors({ ...errors, [name]: "" });
   };
 
   const handleApplyCoupon = async () => {
     if (!couponInput.trim()) return;
-    setCouponLoading(true); setCouponError(''); setAppliedCoupon(null);
+    setCouponLoading(true);
+    setCouponError("");
+    setAppliedCoupon(null);
     try {
-      const res = await api.post('/coupon/validate', {
+      const res = await api.post("/coupon/validate", {
         code: couponInput.trim(),
         cartTotal,
         userId: user?.id || null,
       });
       if (res.data.valid) {
-        setAppliedCoupon({ code: couponInput.trim().toUpperCase(), ...res.data });
+        setAppliedCoupon({
+          code: couponInput.trim().toUpperCase(),
+          ...res.data,
+        });
       } else {
         setCouponError(res.data.message);
       }
     } catch {
-      setCouponError('Could not apply coupon. Please try again.');
+      setCouponError("Could not apply coupon. Please try again.");
     } finally {
       setCouponLoading(false);
     }
   };
 
   const handleRemoveCoupon = () => {
-    setAppliedCoupon(null); setCouponInput(''); setCouponError('');
+    setAppliedCoupon(null);
+    setCouponInput("");
+    setCouponError("");
   };
 
   const validateForm = () => {
@@ -143,8 +150,7 @@ const Cart = () => {
 
         // Overlay is already showing — keep it while Razorpay modal loads
         const options = {
-          key:
-            process.env.REACT_APP_RAZORPAY_KEY_ID || "rzp_test_SOCbaGgrbGuTH9",
+          key: process.env.REACT_APP_RAZORPAY_KEY_ID,
           amount: amount,
           currency: currency,
           name: "Kosha Herbal",
@@ -337,41 +343,106 @@ const Cart = () => {
                 </div>
 
                 {/* ── Coupon input ── */}
-                <div style={{ margin: '0.75rem 0' }}>
+                <div style={{ margin: "0.75rem 0" }}>
                   {!appliedCoupon ? (
                     <>
-                      <div style={{ display: 'flex', gap: 8 }}>
+                      <div style={{ display: "flex", gap: 8 }}>
                         <input
                           type="text"
                           placeholder="Enter coupon code"
                           value={couponInput}
-                          onChange={e => { setCouponInput(e.target.value.toUpperCase()); setCouponError(''); }}
-                          onKeyDown={e => e.key === 'Enter' && (e.preventDefault(), handleApplyCoupon())}
-                          style={{ flex: 1, padding: '0.5rem 0.75rem', border: '1px solid #e5e7eb', borderRadius: 8, fontSize: '0.88rem', textTransform: 'uppercase', letterSpacing: 1 }}
+                          onChange={(e) => {
+                            setCouponInput(e.target.value.toUpperCase());
+                            setCouponError("");
+                          }}
+                          onKeyDown={(e) =>
+                            e.key === "Enter" &&
+                            (e.preventDefault(), handleApplyCoupon())
+                          }
+                          style={{
+                            flex: 1,
+                            padding: "0.5rem 0.75rem",
+                            border: "1px solid #e5e7eb",
+                            borderRadius: 8,
+                            fontSize: "0.88rem",
+                            textTransform: "uppercase",
+                            letterSpacing: 1,
+                          }}
                         />
                         <button
                           type="button"
                           onClick={handleApplyCoupon}
                           disabled={couponLoading}
-                          style={{ padding: '0.5rem 1rem', background: '#6b46c1', color: '#fff', border: 'none', borderRadius: 8, fontWeight: 600, cursor: 'pointer', whiteSpace: 'nowrap' }}
+                          style={{
+                            padding: "0.5rem 1rem",
+                            background: "#6b46c1",
+                            color: "#fff",
+                            border: "none",
+                            borderRadius: 8,
+                            fontWeight: 600,
+                            cursor: "pointer",
+                            whiteSpace: "nowrap",
+                          }}
                         >
-                          {couponLoading ? '...' : 'Apply'}
+                          {couponLoading ? "..." : "Apply"}
                         </button>
                       </div>
                       {couponError && (
-                        <p style={{ marginTop: 6, fontSize: '0.8rem', color: '#ef4444' }}>⚠ {couponError}</p>
+                        <p
+                          style={{
+                            marginTop: 6,
+                            fontSize: "0.8rem",
+                            color: "#ef4444",
+                          }}
+                        >
+                          ⚠ {couponError}
+                        </p>
                       )}
                     </>
                   ) : (
-                    <div style={{ background: '#f0fdf4', border: '1px solid #86efac', borderRadius: 8, padding: '0.6rem 0.9rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                      <span style={{ color: '#15803d', fontWeight: 600, fontSize: '0.88rem' }}>🎟️ {appliedCoupon.code} — You save ₹{appliedCoupon.discountAmount}</span>
-                      <button type="button" onClick={handleRemoveCoupon} style={{ background: 'none', border: 'none', color: '#6b7280', cursor: 'pointer', fontSize: '1rem' }}>✕</button>
+                    <div
+                      style={{
+                        background: "#f0fdf4",
+                        border: "1px solid #86efac",
+                        borderRadius: 8,
+                        padding: "0.6rem 0.9rem",
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                      }}
+                    >
+                      <span
+                        style={{
+                          color: "#15803d",
+                          fontWeight: 600,
+                          fontSize: "0.88rem",
+                        }}
+                      >
+                        🎟️ {appliedCoupon.code} — You save ₹
+                        {appliedCoupon.discountAmount}
+                      </span>
+                      <button
+                        type="button"
+                        onClick={handleRemoveCoupon}
+                        style={{
+                          background: "none",
+                          border: "none",
+                          color: "#6b7280",
+                          cursor: "pointer",
+                          fontSize: "1rem",
+                        }}
+                      >
+                        ✕
+                      </button>
                     </div>
                   )}
                 </div>
 
                 {appliedCoupon && (
-                  <div className="summary-row" style={{ color: '#15803d', fontWeight: 600 }}>
+                  <div
+                    className="summary-row"
+                    style={{ color: "#15803d", fontWeight: 600 }}
+                  >
                     <span>Discount ({appliedCoupon.code})</span>
                     <span>-₹{appliedCoupon.discountAmount}</span>
                   </div>
@@ -382,7 +453,9 @@ const Cart = () => {
                 </div>
                 <div className="summary-row total">
                   <span>Total Amount</span>
-                  <span>₹{appliedCoupon ? appliedCoupon.finalTotal : cartTotal}</span>
+                  <span>
+                    ₹{appliedCoupon ? appliedCoupon.finalTotal : cartTotal}
+                  </span>
                 </div>
                 <div className="trust-badges">
                   <div className="trust-item">

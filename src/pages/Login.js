@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
+import { useNotification } from '../context/NotificationContext';
 import { useNavigate, Link } from 'react-router-dom';
 import api from '../services/api';
 import './Auth.css';
@@ -12,14 +13,14 @@ const Login = () => {
   
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
-  const [successMsg, setSuccessMsg] = useState('');
   
   const { login, verifyPinLogin } = useAuth();
+  const { addNotification } = useNotification();
   const navigate = useNavigate();
 
   const handleStandardLogin = async (e) => {
     e.preventDefault();
-    setLoading(true); setError(''); setSuccessMsg('');
+    setLoading(true); setError('');
     try {
       await login(email, password);
       navigate('/');
@@ -32,10 +33,10 @@ const Login = () => {
 
   const handleSendPin = async (e) => {
     e.preventDefault();
-    setLoading(true); setError(''); setSuccessMsg('');
+    setLoading(true); setError('');
     try {
       await api.post('/auth/forgot-password', { email });
-      setSuccessMsg('A 6-digit PIN has been sent to your email.');
+      addNotification('A 6-digit PIN has been sent to your email.');
       setMode('forgot_pin');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to send PIN.');
@@ -46,7 +47,7 @@ const Login = () => {
 
   const handleVerifyPin = async (e) => {
     e.preventDefault();
-    setLoading(true); setError(''); setSuccessMsg('');
+    setLoading(true); setError('');
     try {
       await verifyPinLogin(email, pin);
       navigate('/');
@@ -60,7 +61,6 @@ const Login = () => {
   const resetState = (newMode) => {
     setMode(newMode);
     setError('');
-    setSuccessMsg('');
     if (newMode === 'login') {
       setPassword('');
     }
@@ -77,7 +77,6 @@ const Login = () => {
         </h2>
         
         {error && <p className="error-message" style={{ color: '#ef4444', marginBottom: '1rem', textAlign: 'center' }}>{error}</p>}
-        {successMsg && <p className="success-message" style={{ color: '#10b981', marginBottom: '1rem', textAlign: 'center' }}>{successMsg}</p>}
 
         {mode === 'login' && (
           <form onSubmit={handleStandardLogin}>
