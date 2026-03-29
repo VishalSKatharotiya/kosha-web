@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
+import { trackSignUp } from '../utils/analytics';
 import './Auth.css';
 
 const SignUp = () => {
@@ -20,6 +21,7 @@ const SignUp = () => {
     setLoading(true);
     try {
       await signup(name, email, password, phone);
+      trackSignUp("email");
       setSuccess(true);
       // Navigate immediately — Home will fetch products/reviews on mount as expected
       navigate('/');

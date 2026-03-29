@@ -22,6 +22,7 @@ import { getReviewsByProduct } from "../data/reviews";
 import { useCart } from "../context/CartContext";
 import { POLICIES } from "../constants/config";
 import Reviews from "../components/home/Reviews";
+import { trackViewItem, trackAddToCart } from "../utils/analytics";
 import "./ProductPage.css";
 
 const ProductPage = () => {
@@ -42,6 +43,11 @@ const ProductPage = () => {
       // Fetch product-specific reviews
       const reviews = await getReviewsByProduct(id);
       setProductReviews(reviews);
+      
+      // Track GA4 view_item event
+      if (data) {
+        trackViewItem(data);
+      }
     };
     fetchProduct();
   }, [id]);
@@ -120,6 +126,7 @@ const ProductPage = () => {
 
   const handleAddToCart = () => {
     addToCart(product);
+    trackAddToCart(product, 1);
   };
 
   const activeMrp = product.originalPrice || product.mrp;

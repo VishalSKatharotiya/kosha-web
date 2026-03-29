@@ -16,6 +16,7 @@ import { useAuth } from "../context/AuthContext";
 import api from "../services/api";
 import { loadRazorpay } from "../utils/razorpay";
 import { INDIAN_STATES } from "../constants/states";
+import { trackBeginCheckout } from "../utils/analytics";
 import "./Cart.css";
 
 const Cart = () => {
@@ -120,6 +121,10 @@ const Cart = () => {
 
     setIsSubmitting(true);
     setPaymentProcessing(true);
+    
+    // Track checkout attempt in GA4
+    trackBeginCheckout(cartItems, appliedCoupon?.finalTotal ?? cartTotal);
+
     try {
       const orderData = {
         userId: user.id,
